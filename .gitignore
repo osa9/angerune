@@ -21,3 +21,6 @@ firebase.config.js
 # Riot open data
 public/dragontail/
 
+.idea/
+.node-version
+
