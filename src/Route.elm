@@ -45,6 +45,26 @@ isGuidePage r =
             False
 
 
+isRuneDB : Maybe Route -> Bool
+isRuneDB r =
+    case r of
+        Just RuneDB ->
+            True
+
+        _ ->
+            False
+
+
+isChampionDB : Maybe Route -> Bool
+isChampionDB r =
+    case r of
+        Just (ChampionDB _) ->
+            True
+
+        _ ->
+            False
+
+
 parser : Parser (Route -> a) a
 parser =
     oneOf

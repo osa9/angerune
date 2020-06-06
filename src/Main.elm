@@ -18,6 +18,7 @@ import Pages.Guide
 import Pages.Live
 import Pages.RuneDB
 import Route exposing (..)
+import Table
 import Url
 import Utils exposing (edges)
 
@@ -62,10 +63,10 @@ menuAttr : (Maybe Route -> Bool) -> Model -> List (El.Attribute msg)
 menuAttr isSelf model =
     [ El.width (El.px 120), El.height El.fill, Font.size 16, Font.bold ]
         ++ (if isSelf model.route then
-                [ Background.color (El.rgb255 70 70 110) ]
+                [ Background.color (El.rgb255 60 60 110) ]
 
             else
-                [ El.mouseOver [ Background.color (El.rgb255 70 70 110) ] ]
+                [ El.mouseOver [ Background.color (El.rgb255 60 60 110) ] ]
            )
 
 
@@ -117,6 +118,7 @@ init flags url key =
                 , runePages = NotAsked
                 , viewRune = NotAsked
                 , editRune = Nothing
+                , tableState = Table.initialSort "学名"
                 }
     in
     ( model

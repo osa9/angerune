@@ -31,10 +31,9 @@ view model =
 
         Success champions ->
             El.column [ El.width El.fill ]
-                [ SubHeader.view
+                [ SubHeader.view model
                 , El.column [ El.padding 30 ]
-                    [ El.text "ソート機能はまだない。。"
-                    , showChampionsTable champions
+                    [ showChampionsTable champions model.tableState
                     ]
                 ]
 
@@ -89,7 +88,7 @@ config : Table.Config Champion Msg
 config =
     Table.config
         { toId = .key
-        , toMsg = \_ -> NoOp
+        , toMsg = SetTableState
         , columns =
             [ iconColumn
             , Table.stringColumn "学名" .id
@@ -110,7 +109,7 @@ config =
         }
 
 
-showChampionsTable : Champions -> El.Element Msg
-showChampionsTable champions =
+showChampionsTable : Champions -> Table.State -> El.Element Msg
+showChampionsTable champions state =
     El.html <|
-        Table.view config (Table.initialSort "ID") champions
+        Table.view config state champions

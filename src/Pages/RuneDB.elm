@@ -25,7 +25,7 @@ view model =
 
         Success rune ->
             El.column [ El.width El.fill] [
-                SubHeader.view,
+                SubHeader.view model,
                 showRuneTable rune
             ]
 

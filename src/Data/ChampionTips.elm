@@ -12,7 +12,6 @@ tips : Dict String (List String)
 tips =
     Dict.fromList
         [ ( "Alistar", [ "絞っても乳は出ない" ] )
-        , ( "Annie", [ "ASがチャンピオン中最低" ] )
         , ( "Jhin", [ "アイテム/ルーンでASは増加しない", "クリティカル発生時に10+増加AS(%)*40%のMS増加", "CritとAS増加でADが増加する" ] )
         , ( "MissFortune", [ "別の対象を攻撃する毎に追加物理ダメージ(AD×50〜100%)", "↑発動時にWのCD2秒減", "W(CD12s)：4秒間AS+40/55/70/85/100%" ] )
         , ( "Sivir", [ "RパッシブでW発動中はASが30/45/60%増加" ] )

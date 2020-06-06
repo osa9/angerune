@@ -16,6 +16,7 @@ import Random
 import Random.Char
 import Random.String
 import Route exposing (..)
+import Table
 import Task exposing (Task)
 import Url
 import Url.Builder
@@ -81,6 +82,7 @@ type alias Model =
     , runePages : RemoteData (List RunePage)
     , viewRune : RemoteData RunePage
     , editRune : Maybe RunePage
+    , tableState : Table.State
     }
 
 
@@ -121,6 +123,7 @@ type Msg
       -- Champion
     | GotChampions (Result Http.Error Models.Champion.Champions)
     | SetError String
+    | SetTableState Table.State
       -- Guide
     | FindRunes
     | FoundRunes String
@@ -263,6 +266,9 @@ update msg model =
 
                 Ok page ->
                     ( { model | viewRune = Success page }, Cmd.none )
+
+        SetTableState s ->
+            ( { model | tableState = s }, Cmd.none )
 
 
 updateRoute : Url.Url -> Model -> ( Model, Cmd Msg )
