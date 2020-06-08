@@ -98,7 +98,7 @@ getChampions : String -> String -> String -> Cmd Msg
 getChampions basePath version locale =
     Http.get
         { url = Url.Builder.absolute [ basePath, version, "data", locale, "champion.json" ] []
-        , expect = Http.expectJson GotChampions (Models.Champion.championsDecoder basePath)
+        , expect = Http.expectJson GotChampions (Models.Champion.championsDecoder basePath version)
         }
 
 

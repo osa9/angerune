@@ -150,7 +150,7 @@ shards basePath =
       ]
     , [ { id = 30, key = "DefenseHP", name = "体力", icon = mkPath "StatModsHealthScalingIcon.png", shortDesc = hpDesc, longDesc = hpDesc }
       , { id = 31, key = "DefenseAR", name = "物理防御", icon = mkPath "StatModsArmorIcon.png", shortDesc = arDesc, longDesc = arDesc }
-      , { id = 32, key = "DefenseMR", name = "魔法防御", icon = mkPath "StatModsHealthScalingIcon.png", shortDesc = mrDesc, longDesc = mrDesc }
+      , { id = 32, key = "DefenseMR", name = "魔法防御", icon = mkPath "StatModsMagicResIcon.png", shortDesc = mrDesc, longDesc = mrDesc }
       ]
     ]
 

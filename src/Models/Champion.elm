@@ -58,33 +58,33 @@ type alias ChampionImage =
     }
 
 
-championsDecoder : String -> D.Decoder Champions
-championsDecoder basePath =
+championsDecoder : String -> String -> D.Decoder Champions
+championsDecoder basePath version =
     D.map Dict.values <|
         D.field "data" <|
             D.dict <|
-                championDecoder basePath
+                championDecoder basePath version
 
 
-championDecoder : String -> D.Decoder Champion
-championDecoder basePath =
+championDecoder : String -> String -> D.Decoder Champion
+championDecoder basePath version =
     D.succeed Champion
         |> andMap (D.field "id" D.string)
         |> andMap (D.field "key" D.string)
         |> andMap (D.field "name" D.string)
         |> andMap (D.field "title" D.string)
         |> andMap (D.field "blurb" D.string)
-        |> andMap (D.field "image" <| championImageDecoder basePath)
+        |> andMap (D.field "image" <| championImageDecoder basePath version)
         |> andMap (D.field "tags" (D.list D.string))
         |> andMap (D.field "partype" D.string)
         |> andMap (D.field "stats" championStatDecoder)
 
 
-championImageDecoder : String -> D.Decoder ChampionImage
-championImageDecoder basePath =
+championImageDecoder : String -> String -> D.Decoder ChampionImage
+championImageDecoder basePath version =
     D.succeed ChampionImage
         |> andMap (D.map (\img -> Url.Builder.absolute [ basePath, "img", "champion", img ] []) (D.field "full" D.string))
-        |> andMap (D.map (\img -> Url.Builder.absolute [ basePath, "img", "sprite", img ] []) (D.field "sprite" D.string))
+        |> andMap (D.map (\img -> Url.Builder.absolute [ basePath, version, "img", "sprite", img ] []) (D.field "sprite" D.string))
         |> andMap (D.field "group" D.string)
         |> andMap (D.field "x" D.int)
         |> andMap (D.field "y" D.int)
